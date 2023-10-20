@@ -3,5 +3,5 @@ import 'package:movie/models/movie_model.dart';
 
 abstract class MovieRepository {
   // get discover movies
-  Future<Either<String, MovieResponseModel>> getDiscover({int page = 5});
+  Future<Either<String, MovieResponseModel>> getDiscover({int page = 1});
 }
