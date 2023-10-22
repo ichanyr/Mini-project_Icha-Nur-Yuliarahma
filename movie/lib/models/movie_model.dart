@@ -1,7 +1,7 @@
 //  respons dari API yang mengembalikan daftar film atau hasil pencarian film
 class MovieResponseModel {
   final int page;
-  final List<MovieDetailModel> results;
+  final List<MovieModel> results;
   final int totalPages;
   final int totalResults;
 
@@ -15,15 +15,15 @@ class MovieResponseModel {
   factory MovieResponseModel.fromJson(Map<String, dynamic> json) =>
       MovieResponseModel(
         page: json["page"],
-        results: List<MovieDetailModel>.from(
-            json["results"].map((x) => MovieDetailModel.fromJson(x))),
+        results: List<MovieModel>.from(
+            json["results"].map((x) => MovieModel.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
 }
 
 // untuk menampilkan list movie
-class MovieDetailModel {
+class MovieModel {
   // final bool adult;
   final String backdropPath;
   // final List<int> genreIds;
@@ -39,7 +39,7 @@ class MovieDetailModel {
   final double voteAverage;
   final int voteCount;
 
-  MovieDetailModel({
+  MovieModel({
     // required this.adult,
     required this.backdropPath,
     // required this.genreIds,
@@ -56,8 +56,7 @@ class MovieDetailModel {
     required this.voteCount,
   });
 
-  factory MovieDetailModel.fromJson(Map<String, dynamic> json) =>
-      MovieDetailModel(
+  factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
         // adult: json["adult"],
         backdropPath: json["backdrop_path"],
         // genreIds: List<int>.from(json["genre_ids"].map((x) => x)),

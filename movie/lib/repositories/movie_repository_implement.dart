@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:movie/models/movie_detail_model.dart';
 import 'package:movie/models/movie_model.dart';
 import 'package:movie/repositories/movie_repository.dart';
 
@@ -9,7 +10,8 @@ class MovieRepositoryImplements implements MovieRepository {
   MovieRepositoryImplements(this._dio); // constructor
   @override
   // method getDiscover
-  Future<Either<String, MovieResponseModel>> getDiscover({int page = 3}) async {
+  Future<Either<String, MovieResponseModel>> getDiscoverMovie(
+      {int page = 1}) async {
     try {
       // menunggu hasil permintaan HTTP selesai
       final result = await _dio.get(
@@ -30,6 +32,31 @@ class MovieRepositoryImplements implements MovieRepository {
         return Left(e.response.toString());
       }
       return Left('Another error on get discover movies');
+    }
+  }
+
+  @override
+  Future<Either<String, MovieDetailModel>> getDetailMovie(
+      {required int id}) async {
+    try {
+      // menunggu hasil permintaan HTTP selesai
+      final result = await _dio.get(
+        '/movie/$id',
+      );
+      if (result.statusCode == 200 && result.data != null) {
+        final model = MovieDetailModel.fromJson(result.data);
+        return Right(model);
+      }
+      //   throw 'Error get Discover movies';
+      // } catch (e) {
+      //   throw e.toString();
+      // }
+      return Left('Error get detail movies');
+    } on DioError catch (e) {
+      if (e.response != null) {
+        return Left(e.response.toString());
+      }
+      return Left('Another error on get detail movies');
     }
   }
 }

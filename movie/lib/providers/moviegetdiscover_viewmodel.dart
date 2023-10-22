@@ -10,13 +10,13 @@ class MovieGetDiscover with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  final List<MovieDetailModel> _movies = [];
-  List<MovieDetailModel> get movies => _movies;
+  final List<MovieModel> _movie = [];
+  List<MovieModel> get movie => _movie;
 
-  void getDiscover(BuildContext context) async {
+  void getDiscoverMovie(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
-    final result = await _movieRepository.getDiscover();
+    final result = await _movieRepository.getDiscoverMovie();
 
     result.fold((l) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -29,8 +29,8 @@ class MovieGetDiscover with ChangeNotifier {
 
       return;
     }, (r) {
-      _movies.clear();
-      _movies.addAll(r.results);
+      _movie.clear();
+      _movie.addAll(r.results);
 
       _isLoading = false;
       notifyListeners();
@@ -38,5 +38,42 @@ class MovieGetDiscover with ChangeNotifier {
     });
   }
 
-  // void getDiscoverWithPaging(){}
+  // void getDiscover(
+  //   BuildContext context, {
+  //   required int page,
+  //   required PagingController pagingController,
+  // }) async {
+  //   // _isLoading = true;
+  //   // notifyListeners();
+  //   // final result = await _movieRepository.getDiscover();
+  //   final result = await _movieRepository.getDiscover(page: page);
+
+  //   result.fold((l) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text(l),
+  //       ),
+  //     );
+  //     // _isLoading = false;
+  //     // notifyListeners();
+
+  //     return;
+  //   }, (r) {
+  //     if (r.results.length < 20) {
+  //       pagingController.appendLastPage(r.results);
+  //     } else {
+  //       pagingController.appendPage(r.results, page++);
+  //     }
+  //     // _movies.clear();
+  //     // _movies.addAll(r.results);
+
+  //     // _isLoading = false;
+  //     // notifyListeners();
+  //     // return null;_movies.clear();
+  //     // _movies.addAll(r.results);
+
+  //     // _isLoading = false;
+  //     // notifyListeners();
+  //     return null;
+  //   });
 }

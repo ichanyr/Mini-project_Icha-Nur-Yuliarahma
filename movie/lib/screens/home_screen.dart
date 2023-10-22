@@ -12,17 +12,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
+  // final PagingController<int, MovieDetailModel> _pagingController =
+  //     PagingController(firstPageKey: 1);
+  // @override
+  // void initState() {
+  //   _pagingController.addPageRequestListener((pageKey) {
+  //     context.read<MovieGetDiscover>().getDiscover(
+  //           context,
+  //           page: pageKey,
+  //           pagingController: _pagingController,
+  //         );
+  //   });
+  //   super.initState();
+  // }
+
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        context.read<MovieGetDiscover>().getDiscover(context);
+        context.read<MovieGetDiscover>().getDiscoverMovie(context);
       },
     );
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movieyay"),
+        title: Text("Discover Movies"),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
@@ -33,8 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          // body: PagedListView.separated(pagingController: _pagingController, builderDelegate: PagedChildBuilderDelegate<MovieDetailModel>(itemBuilder: ((context, item, index) {
 
-          if (provider.movies.isNotEmpty)
+          // })), separatorBuilder: separatorBuilder),
+
+          if (provider.movie.isNotEmpty)
             return SingleChildScrollView(
               child: Padding(
                 padding:
@@ -64,9 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.only(bottom: 16),
                       shrinkWrap: true,
-                      itemCount: provider.movies.length,
+                      itemCount: provider.movie.length,
                       itemBuilder: (context, index) {
-                        final movie = provider.movies[index];
+                        final movie = provider.movie[index];
 
                         return InkWell(
                           onTap: () {
@@ -74,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return DetailMovieScreen();
+                                  return DetailMovieScreen(
+                                    id: movie.id,
+                                  );
                                 },
                               ),
                             );
@@ -150,4 +168,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  // @override
+  // void dispose() {
+  //   _pagingController.dispose();
+  //   super.dispose();
+  // }
 }

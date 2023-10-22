@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:movie/screens/detail_movie_screen.dart';
 import 'package:movie/screens/home_screen.dart';
 import 'package:movie/screens/recommed_screen.dart';
 import 'package:movie/screens/search_screen.dart';
@@ -17,6 +18,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     HomeScreen(),
     SearchScreen(),
     RecommendationScreen()
+    // DetailMovieScreen()
   ];
 
   void _onItemTap(int index) {
