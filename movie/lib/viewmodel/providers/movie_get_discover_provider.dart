@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie/models/movie_model.dart';
-import 'package:movie/repositories/movie_repository.dart';
+import 'package:movie/viewmodel/repositories/movie_repository.dart';
 
-class MovieGetDiscover with ChangeNotifier {
+class MovieGetDiscoverProvider with ChangeNotifier {
   final MovieRepository _movieRepository;
 
-  MovieGetDiscover(this._movieRepository);
+  MovieGetDiscoverProvider(this._movieRepository);
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

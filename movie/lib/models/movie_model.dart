@@ -38,8 +38,10 @@ class MovieModel {
   // final bool video;
   final double voteAverage;
   final int voteCount;
+  bool isFavorite;
 
   MovieModel({
+    required this.isFavorite,
     // required this.adult,
     required this.backdropPath,
     // required this.genreIds,
@@ -55,6 +57,10 @@ class MovieModel {
     required this.voteAverage,
     required this.voteCount,
   });
+
+  void addFavorite() {
+    isFavorite = !isFavorite;
+  }
 
   factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
         // adult: json["adult"],
@@ -72,5 +78,6 @@ class MovieModel {
         // video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
+        isFavorite: false,
       );
 }

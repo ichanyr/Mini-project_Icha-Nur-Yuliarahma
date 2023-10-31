@@ -12,7 +12,12 @@ class _RecommendationScreenState extends State<RecommendationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recommendation'),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        title: Text(
+          'Recommendation',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Center(
         child: Text('data'),

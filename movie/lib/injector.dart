@@ -1,19 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie/api_constant.dart';
-import 'package:movie/providers/movie_get_detail_provider.dart';
-import 'package:movie/providers/moviegetdiscover_viewmodel.dart';
-import 'package:movie/repositories/movie_repository.dart';
-import 'package:movie/repositories/movie_repository_implement.dart';
+import 'package:movie/viewmodel/providers/fav_list_provider.dart';
+import 'package:movie/viewmodel/providers/movie_get_detail_provider.dart';
+import 'package:movie/viewmodel/providers/movie_get_discover_provider.dart';
+import 'package:movie/viewmodel/providers/movie_search_provider.dart';
+import 'package:movie/viewmodel/repositories/movie_repository.dart';
+import 'package:movie/viewmodel/repositories/movie_repository_implement.dart';
 
 final serviceLocator = GetIt.instance;
 
 void setup() {
   // Register Provider
-  serviceLocator.registerFactory<MovieGetDiscover>(
-      () => MovieGetDiscover(serviceLocator()));
+  serviceLocator.registerFactory<MovieGetDiscoverProvider>(
+      () => MovieGetDiscoverProvider(serviceLocator()));
   serviceLocator.registerFactory<GetMovieDetailProvider>(
       () => GetMovieDetailProvider(serviceLocator()));
+  serviceLocator.registerFactory<MovieSearchProvider>(
+      () => MovieSearchProvider(serviceLocator()));
+  serviceLocator.registerFactory<FavoriteProvider>(
+      () => FavoriteProvider(serviceLocator()));
 
   // Register repository
   serviceLocator.registerLazySingleton<MovieRepository>(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:movie/injector.dart';
-import 'package:movie/navigation_screen.dart';
-import 'package:movie/providers/moviegetdiscover_viewmodel.dart';
+import 'package:movie/viewmodel/providers/fav_list_provider.dart';
+import 'package:movie/viewmodel/providers/movie_get_discover_provider.dart';
+import 'package:movie/viewmodel/providers/movie_search_provider.dart';
+import 'package:movie/view/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,14 +24,16 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (_) => serviceLocator<MovieGetDiscover>(),
+            create: (_) => serviceLocator<MovieGetDiscoverProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => serviceLocator<MovieSearchProvider>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => serviceLocator<FavoriteProvider>(),
           ),
         ],
         child: MaterialApp(
-          // routes: {
-          //   '/home': (context) => HomeScreen(),
-          //   '/search': (context) => SearchScreen(),
-          // },
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -37,7 +41,12 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             useMaterial3: true,
           ),
-          home: NavigationScreen(),
+          // home: NavigationScreen(),
+          home: LoginScreen(),
+          // routes: {
+          //   '/login': (context) => LoginScreen(),
+          //   '/register': (context) => RegisterScreen(),
+          // },
         ));
   }
 }

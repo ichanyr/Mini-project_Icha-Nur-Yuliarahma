@@ -15,6 +15,7 @@ class MovieDetailModel {
   final String title;
   final double voteAverage;
   final int voteCount;
+  bool isFavorite;
 
   MovieDetailModel({
     required this.adult,
@@ -33,6 +34,7 @@ class MovieDetailModel {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
+    this.isFavorite = false,
   });
 
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) =>

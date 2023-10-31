@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/models/movie_detail_model.dart';
-import 'package:movie/repositories/movie_repository.dart';
+import 'package:movie/viewmodel/repositories/movie_repository.dart';
 
 class GetMovieDetailProvider with ChangeNotifier {
   final MovieRepository _movieRepository;
@@ -9,6 +9,8 @@ class GetMovieDetailProvider with ChangeNotifier {
 
   MovieDetailModel? _movie;
   MovieDetailModel? get movie => _movie;
+
+  get favoriteMovies => null;
 
   void getDetail(BuildContext context, {required int id}) async {
     _movie = null;
@@ -32,4 +34,6 @@ class GetMovieDetailProvider with ChangeNotifier {
       },
     );
   }
+
+  void removeFavorite(movie) {}
 }
