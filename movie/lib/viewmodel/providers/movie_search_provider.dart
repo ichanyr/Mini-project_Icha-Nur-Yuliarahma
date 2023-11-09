@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/models/movie_model.dart';
 import 'package:movie/viewmodel/repositories/movie_repository.dart';

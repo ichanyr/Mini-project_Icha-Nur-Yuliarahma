@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:movie/api_constant.dart';
 import 'package:movie/viewmodel/providers/fav_list_provider.dart';
-import 'package:movie/view/screens/detail_movie_screen.dart';
+import 'package:movie/widget/movie_fav_item_widget.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final favProvider = Provider.of<FavoriteProvider>(context); //object
+    print('ini adl favscreen');
+    print(favProvider);
+    print(favProvider.favoriteMovies.length);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -15,6 +18,23 @@ class FavoriteScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+      ),
+      //property: value berupa class
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: favProvider.favoriteMovies.length,
+                //property : value
+                // property itemBuilder memiliki 2 value yaitu context dan index
+                itemBuilder: (context, index) {
+                  final movie = favProvider.favoriteMovies[index];
+                  return MovieFavItemWidget(movie: movie);
+                })
+          ],
+        ),
       ),
       // body: Consumer<FavoriteProvider>(
       //   builder: (_, provider, __) {

@@ -90,11 +90,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value!.isEmpty) {
                                   return 'Please enter your name';
                                 }
+                                if (value.trim().split(' ').length < 2) {
+                                  return 'Name must contain at least two words';
+                                }
+                                if (!RegExp(
+                                        r'^[A-Z][a-z]* [A-Z][a-z]* [A-Z][a-z]*$')
+                                    .hasMatch(value.trim())) {
+                                  return 'Name must start with a capital letter and contain at least three words';
+                                }
                                 return null;
                               },
                               controller: _nameController,
                               decoration: InputDecoration(
                                 labelText: 'Name',
+                                icon: Icon(Icons.person),
                                 hintText: 'Enter your name',
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -123,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               controller: _emailController,
                               decoration: InputDecoration(
                                 labelText: 'Email',
+                                icon: Icon(Icons.email),
                                 hintText: 'Enter your email',
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -140,11 +150,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value!.isEmpty) {
                                   return 'Please enter your password';
                                 }
+                                if (value.length < 6) {
+                                  return 'Password must be at least 6 characters long';
+                                }
+                                if (!RegExp(r'^(?=.*[0-9])(?=.*[!@#$%^&*])')
+                                    .hasMatch(value)) {
+                                  return 'Password must contain at least one number and one special character';
+                                }
                                 return null;
                               },
                               controller: _passwordController,
                               decoration: InputDecoration(
                                 labelText: 'Password',
+                                icon: Icon(Icons.key),
                                 hintText: 'Enter your password',
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -183,7 +201,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: Center(
                                     child: Text(
                                       'Login',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
                                     ),
                                   )),
                               style: ButtonStyle(

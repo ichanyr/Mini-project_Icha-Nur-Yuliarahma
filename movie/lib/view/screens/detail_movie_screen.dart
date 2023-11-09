@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie/injector.dart';
 import 'package:movie/viewmodel/providers/movie_get_detail_provider.dart';
-import 'package:movie/widget/movie_item_widget.dart';
+import 'package:movie/widget/movie_detail_item_widget.dart';
 import 'package:provider/provider.dart';
 
 class DetailMovieScreen extends StatelessWidget {
@@ -73,7 +73,9 @@ class _widgetAppBar extends SliverAppBar {
         builder: (_, provider, __) {
           final movie = provider.movie;
           if (movie != null) {
-            return MovieItemWidget(movie: movie);
+            return SafeArea(
+              child: MovieDetailWidget(movie: movie),
+            );
           }
           // Jika movie null, Anda bisa mengembalikan Widget lain atau null sesuai kebutuhan.
           return Container();

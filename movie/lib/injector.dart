@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie/api_constant.dart';
-import 'package:movie/viewmodel/providers/fav_list_provider.dart';
 import 'package:movie/viewmodel/providers/movie_get_detail_provider.dart';
 import 'package:movie/viewmodel/providers/movie_get_discover_provider.dart';
 import 'package:movie/viewmodel/providers/movie_search_provider.dart';
@@ -18,8 +17,8 @@ void setup() {
       () => GetMovieDetailProvider(serviceLocator()));
   serviceLocator.registerFactory<MovieSearchProvider>(
       () => MovieSearchProvider(serviceLocator()));
-  serviceLocator.registerFactory<FavoriteProvider>(
-      () => FavoriteProvider(serviceLocator()));
+  // serviceLocator.registerFactory<FavoriteProvider>(
+  //     () => FavoriteProvider(serviceLocator()));
 
   // Register repository
   serviceLocator.registerLazySingleton<MovieRepository>(

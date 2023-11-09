@@ -4,7 +4,7 @@ import 'package:movie/models/movie_model.dart';
 class FavoriteProvider with ChangeNotifier {
   List<MovieModel> _favoriteMovies = [];
 
-  FavoriteProvider(Object object);
+  // FavoriteProvider(Object object);
 
   List<MovieModel> get favoriteMovies => _favoriteMovies;
 
@@ -13,8 +13,15 @@ class FavoriteProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeFavorite(MovieModel movie) {
-    _favoriteMovies.remove(movie);
-    notifyListeners();
+  // void removeFavorite(MovieModel movie) {
+  //   _favoriteMovies.remove(movie);
+  //   notifyListeners();
+  // }
+  bool removeFavorite(MovieModel movie) {
+    final success = _favoriteMovies.remove(movie);
+    if (success) {
+      notifyListeners(); // Hanya panggil notifyListeners jika penghapusan berhasil
+    }
+    return success;
   }
 }

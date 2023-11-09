@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:movie/api_constant.dart';
 
-class MovieItemWidget extends StatelessWidget {
+class MovieDetailWidget extends StatelessWidget {
   final dynamic movie;
 
-  MovieItemWidget({required this.movie});
+  MovieDetailWidget({required this.movie});
 
   @override
   Widget build(BuildContext context) {
     print('ini dat baru');
     print(movie);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       // height: 300,
 
       child: ClipRRect(
@@ -23,7 +23,7 @@ class MovieItemWidget extends StatelessWidget {
                 '${APIConstant.imageUrlOriginal}${movie.backdropPath}',
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: 100,
+                height: 300,
               ),
             ),
             Positioned(

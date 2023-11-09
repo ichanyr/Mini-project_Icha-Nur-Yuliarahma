@@ -17,26 +17,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
     HomeScreen(),
     FavoriteScreen(),
     RecommendationScreen()
-    // DetailMovieScreen()
   ];
 
   void _onItemTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    // print('${_selectedIndex}');
-
-    //   switch (index) {
-    //     case 0:
-    //       Navigator.of(context).pushNamed('/home'); // Navigate to HomeScreen
-    //       break;
-    //     case 1:
-    //       Navigator.of(context).pushNamed('/search'); // Navigate to SearchScreen
-    //       break;
-    //     default:
-    //       // Handle other cases if needed
-    //       break;
-    //   }
   }
 
   @override

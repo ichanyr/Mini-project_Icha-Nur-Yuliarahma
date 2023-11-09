@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             create: (_) => serviceLocator<MovieSearchProvider>(),
           ),
           ChangeNotifierProvider(
-            create: (_) => serviceLocator<FavoriteProvider>(),
+            create: (_) => FavoriteProvider(),
           ),
         ],
         child: MaterialApp(

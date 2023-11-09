@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie/viewmodel/providers/movie_search_provider.dart';
+import 'package:movie/widget/movie_item_widget.dart';
 import 'package:provider/provider.dart';
 
 class SearchMovieScreen extends SearchDelegate {
@@ -51,11 +52,15 @@ class SearchMovieScreen extends SearchDelegate {
       }
       if (provider.searchMovie.isNotEmpty) {
         return ListView.separated(
-          itemBuilder: (_, index) => Text(provider.searchMovie[index].title),
+          itemBuilder: (_, index) {
+            final movie = provider.searchMovie[index];
+            return MovieItemWidget(movie: movie);
+          },
           itemCount: provider.searchMovie.length,
           separatorBuilder: (_, index) => SizedBox(),
         );
       }
+
       return Center(
         child: Text('Another error on search movies'),
       );
