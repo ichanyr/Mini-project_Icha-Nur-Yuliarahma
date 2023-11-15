@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 import 'package:movie/view/screens/home_screen.dart';
 import 'package:movie/view/screens/recommed_screen.dart';
 import 'package:movie/view/screens/fav_screen.dart';
@@ -16,7 +17,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     FavoriteScreen(),
-    RecommendationScreen()
+    RecommendationScreen(gptResponseData: FavoriteScreen.gptResponseData),
   ];
 
   void _onItemTap(int index) {

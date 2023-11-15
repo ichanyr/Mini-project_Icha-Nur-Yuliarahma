@@ -4,6 +4,8 @@ import 'package:movie/widget/movie_fav_item_widget.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteScreen extends StatelessWidget {
+  static var gptResponseData;
+
   @override
   Widget build(BuildContext context) {
     final favProvider = Provider.of<FavoriteProvider>(context); //object
